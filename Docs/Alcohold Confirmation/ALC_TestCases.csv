@@ -1,0 +1,182 @@
+TC ID,Module,Risk Level,Test Scenario,Pre-Condition,Test Steps,Test Data,Expected Result,Priority
+ALC_DISPLAY_TC_001,M1: Điều kiện hiển thị,High,"Verify popup hiển thị khi giỏ hàng có 1 SP rượu và nhấn ""Đặt hàng""","User đã đăng nhập, giỏ hàng có 1 SP rượu, đã nhập địa chỉ giao hàng, đang ở trang ""Xác nhận thanh toán""","1. Tại trang ""Xác nhận thanh toán"", xác nhận giỏ hàng hiển thị SP rượu
+2. Nhấn nút ""Đặt hàng""","Giỏ hàng: 1x Rượu vang đỏ Chile 750ml (149,000đ)","1. Giỏ hàng hiển thị đúng SP rượu
+2. Popup ""Xác nhận thông tin mua rượu"" hiển thị đầy đủ: Tên, Địa chỉ cư trú, Checkbox, Hint text, Button Xác nhận",Critical
+ALC_DISPLAY_TC_002,M1: Điều kiện hiển thị,High,Verify popup hiển thị khi giỏ hàng có nhiều SP rượu lẫn SP thường,"User đã đăng nhập, giỏ hàng có 2 SP rượu + 1 SP thường, đã nhập địa chỉ giao hàng, đang ở trang ""Xác nhận thanh toán""","1. Tại trang ""Xác nhận thanh toán"", xác nhận giỏ hàng có cả SP rượu và SP thường
+2. Nhấn nút ""Đặt hàng""",Giỏ hàng: 1x Rượu vang đỏ Chile 750ml + 1x Rượu Sake Nhật 300ml + 1x Nước suối Aquafina 500ml,"1. Giỏ hàng hiển thị đúng các SP
+2. Popup xác nhận hiển thị (chỉ 1 lần, không duplicate)",High
+ALC_DISPLAY_TC_003,M1: Điều kiện hiển thị,High,Verify popup KHÔNG hiển thị khi giỏ hàng chỉ có SP thường,"User đã đăng nhập, giỏ hàng chỉ có SP thường, đang ở trang ""Xác nhận thanh toán""","1. Tại trang ""Xác nhận thanh toán"", xác nhận giỏ hàng không có SP rượu
+2. Nhấn nút ""Đặt hàng""",Giỏ hàng: 1x Nước suối Aquafina 500ml + 1x Bánh mì sandwich,"1. Giỏ hàng chỉ hiển thị SP thường
+2. Hệ thống tiếp tục đặt hàng bình thường, popup KHÔNG hiển thị",Critical
+ALC_DISPLAY_TC_004,M1: Điều kiện hiển thị,High,"Verify nhấn ""Đặt hàng"" nhiều lần liên tục — popup không duplicate","User đã đăng nhập, giỏ hàng có SP rượu, đang ở trang ""Xác nhận thanh toán""","1. Tại trang ""Xác nhận thanh toán"", nhấn nút ""Đặt hàng"" 2 lần liên tục nhanh (double click)",Giỏ hàng: 1x Rượu vang đỏ Chile 750ml,"1. Popup xác nhận hiển thị chỉ 1 lần, không bị 2 popup chồng lên nhau",Medium
+ALC_FORM_TC_001,M2.1: Trường Tên,Medium,Verify trường Tên được autofill đúng từ địa chỉ giao hàng,"User đã nhập địa chỉ giao hàng với Tên: ""Nguyễn Văn An"", giỏ hàng có SP rượu, đang ở trang ""Xác nhận thanh toán""","1. Nhấn nút ""Đặt hàng""
+2. Kiểm tra giá trị trường ""Tên"" trên popup",Tên giao hàng: Nguyễn Văn An,"1. Popup hiển thị
+2. Trường ""Tên"" hiển thị autofill: ""Nguyễn Văn An"" — khớp tên giao hàng",High
+ALC_FORM_TC_002,M2.1: Trường Tên,Medium,Verify user có thể chỉnh sửa trường Tên sau khi autofill,"Popup đã hiển thị, trường Tên autofill ""Nguyễn Văn An""","1. Click vào trường ""Tên""
+2. Xóa giá trị autofill
+3. Nhập tên mới: ""Trần Thị Bình""
+4. Xác nhận trường hiển thị giá trị mới",Tên autofill: Nguyễn Văn An → Tên chỉnh sửa: Trần Thị Bình,"1. Trường ""Tên"" có thể focus/click
+2. Giá trị autofill bị xóa
+3. Giá trị mới được nhập thành công
+4. Trường hiển thị: ""Trần Thị Bình""",High
+ALC_FORM_TC_003,M2.1: Trường Tên,Medium,Verify trường Tên required — để trống rồi nhấn Xác nhận,"Popup đã hiển thị, checkbox đã check, trường Địa chỉ có giá trị","1. Xóa toàn bộ nội dung trường ""Tên"" (để trống)
+2. Nhấn nút ""Xác nhận""","Trường Tên: """" (rỗng)","1. Trường ""Tên"" trống
+2. Hệ thống hiển thị lỗi required cho trường Tên, không cho phép xác nhận",High
+ALC_FORM_TC_004,M2.1: Trường Tên,Medium,Verify trường Tên — chỉ nhập khoảng trắng (whitespace-only),"Popup đã hiển thị, checkbox đã check, trường Địa chỉ có giá trị","1. Xóa toàn bộ nội dung trường ""Tên""
+2. Nhập 3 khoảng trắng: ""   ""
+3. Nhấn nút ""Xác nhận""","Trường Tên: ""   "" (3 ký tự space)","1. Trường ""Tên"" hiển thị trống/khoảng trắng
+2-3. Hệ thống trim whitespace và báo lỗi required",Medium
+ALC_FORM_TC_005,M2.1: Trường Tên,Medium,Verify trường Tên — nhập XSS injection,"Popup đã hiển thị, checkbox đã check, trường Địa chỉ có giá trị","1. Xóa giá trị autofill trường ""Tên""
+2. Nhập: `<script>alert('XSS')</script>`
+3. Nhấn nút ""Xác nhận""",Trường Tên: `<script>alert('XSS')</script>`,"1. Giá trị autofill bị xóa
+2. Giá trị được nhập vào trường
+3. Hệ thống KHÔNG thực thi script — sanitize hoặc báo lỗi",High
+ALC_FORM_TC_006,M2.1: Trường Tên,Medium,Verify trường Tên — nhập SQL injection,"Popup đã hiển thị, checkbox đã check, trường Địa chỉ có giá trị","1. Xóa giá trị autofill trường ""Tên""
+2. Nhập: `' OR 1=1--`
+3. Nhấn nút ""Xác nhận""",Trường Tên: `' OR 1=1--`,"1-2. Giá trị được nhập vào trường
+3. Hệ thống KHÔNG bị SQL injection — sanitize hoặc báo lỗi",High
+ALC_FORM_TC_007,M2.1: Trường Tên,Medium,Verify trường Tên — nhập Unicode/Emoji,"Popup đã hiển thị, checkbox đã check, trường Địa chỉ có giá trị","1. Xóa giá trị autofill trường ""Tên""
+2. Nhập: ""Nguyễn 😀 Văn An""
+3. Nhấn nút ""Xác nhận""","Trường Tên: ""Nguyễn 😀 Văn An""","1-2. Giá trị được nhập vào trường
+3. Hệ thống chấp nhận Unicode/Emoji hoặc báo lỗi ký tự không hợp lệ",Low
+ALC_FORM_TC_008,M2.1: Trường Tên,Medium,Verify trường Tên — leading/trailing spaces,"Popup đã hiển thị, checkbox đã check, trường Địa chỉ có giá trị","1. Xóa giá trị autofill trường ""Tên""
+2. Nhập: ""  Nguyễn Văn An  "" (2 space đầu + 2 space cuối)
+3. Nhấn nút ""Xác nhận""","Trường Tên: ""  Nguyễn Văn An  ""","1-2. Giá trị được nhập
+3. Hệ thống trim spaces trước khi lưu. customer_note lưu: ""Nguyễn Văn An""",Low
+ALC_FORM_TC_009,M2.1: Trường Tên,Medium,Verify trường Tên — autofill khi địa chỉ giao hàng chưa có tên,"User chưa nhập tên trong địa chỉ giao hàng, giỏ hàng có SP rượu","1. Tại trang ""Xác nhận thanh toán"", nhấn ""Đặt hàng""
+2. Kiểm tra trường ""Tên"" trên popup",Tên giao hàng: (rỗng),"1. Popup hiển thị
+2. Trường ""Tên"" hiển thị rỗng, cho phép user nhập tay",Medium
+ALC_FORM_TC_010,M2.2: Trường Địa chỉ,Medium,Verify trường Địa chỉ autofill đúng từ địa chỉ giao hàng,"User đã nhập địa chỉ giao hàng: ""123 Nguyễn Huệ, P. Bến Nghé, Q1, TP.HCM"", giỏ hàng có SP rượu","1. Nhấn ""Đặt hàng""
+2. Kiểm tra trường ""Địa chỉ cư trú"" trên popup","Địa chỉ giao hàng: 123 Nguyễn Huệ, P. Bến Nghé, Q1, TP.HCM","1. Popup hiển thị
+2. Trường ""Địa chỉ cư trú"" hiển thị: ""123 Nguyễn Huệ, P. Bến Nghé, Q1, TP.HCM""",High
+ALC_FORM_TC_011,M2.2: Trường Địa chỉ,Medium,Verify user có thể chỉnh sửa trường Địa chỉ sau khi autofill,"Popup đã hiển thị, trường Địa chỉ autofill ""123 Nguyễn Huệ, Q1, TP.HCM""","1. Click vào trường ""Địa chỉ cư trú""
+2. Xóa giá trị autofill
+3. Nhập địa chỉ mới: ""456 Lê Lợi, P. Bến Thành, Q1, TP.HCM""
+4. Xác nhận trường hiển thị giá trị mới","Địa chỉ autofill: 123 Nguyễn Huệ, Q1 → Chỉnh sửa: 456 Lê Lợi, P. Bến Thành, Q1, TP.HCM","1. Trường có thể focus/click
+2. Giá trị autofill bị xóa
+3. Giá trị mới nhập thành công
+4. Trường hiển thị: ""456 Lê Lợi, P. Bến Thành, Q1, TP.HCM""",High
+ALC_FORM_TC_012,M2.2: Trường Địa chỉ,Medium,Verify trường Địa chỉ required — để trống rồi nhấn Xác nhận,"Popup đã hiển thị, checkbox đã check, trường Tên có giá trị","1. Xóa toàn bộ nội dung trường ""Địa chỉ cư trú"" (để trống)
+2. Nhấn nút ""Xác nhận""","Trường Địa chỉ: """" (rỗng)","1. Trường ""Địa chỉ cư trú"" trống
+2. Hệ thống hiển thị lỗi required, không cho phép xác nhận",High
+ALC_FORM_TC_013,M2.2: Trường Địa chỉ,Medium,Verify trường Địa chỉ — chỉ nhập khoảng trắng,"Popup đã hiển thị, checkbox đã check, trường Tên có giá trị","1. Xóa toàn bộ trường ""Địa chỉ cư trú""
+2. Nhập 5 khoảng trắng: ""     ""
+3. Nhấn nút ""Xác nhận""","Trường Địa chỉ: ""     "" (5 ký tự space)","1-2. Trường hiển thị trống/khoảng trắng
+3. Hệ thống trim whitespace và báo lỗi required",Medium
+ALC_FORM_TC_014,M2.2: Trường Địa chỉ,Medium,Verify trường Địa chỉ — nhập XSS injection,"Popup đã hiển thị, checkbox đã check, trường Tên có giá trị","1. Xóa giá trị autofill trường ""Địa chỉ cư trú""
+2. Nhập: `<img src=x onerror=alert('XSS')>`
+3. Nhấn nút ""Xác nhận""",Trường Địa chỉ: `<img src=x onerror=alert('XSS')>`,"1-2. Giá trị được nhập vào trường
+3. Hệ thống KHÔNG thực thi script — sanitize hoặc báo lỗi",High
+ALC_FORM_TC_015,M2.2: Trường Địa chỉ,Medium,Verify trường Địa chỉ — nhập SQL injection,"Popup đã hiển thị, checkbox đã check, trường Tên có giá trị","1. Xóa giá trị autofill trường ""Địa chỉ cư trú""
+2. Nhập: `'; DROP TABLE orders;--`
+3. Nhấn nút ""Xác nhận""",Trường Địa chỉ: `'; DROP TABLE orders;--`,"1-2. Giá trị được nhập vào trường
+3. Hệ thống KHÔNG bị SQL injection — sanitize hoặc báo lỗi",High
+ALC_FORM_TC_016,M2.2: Trường Địa chỉ,Medium,Verify trường Địa chỉ — nhập chuỗi rất dài,"Popup đã hiển thị, checkbox đã check, trường Tên có giá trị","1. Xóa giá trị autofill trường ""Địa chỉ cư trú""
+2. Nhập chuỗi 500 ký tự: ""A"" lặp lại 500 lần
+3. Nhấn nút ""Xác nhận""","Trường Địa chỉ: ""AAAAAAAAAA..."" (500 ký tự ""A"")","1-2. Trường cho phép nhập hoặc giới hạn tại max length
+3. Hệ thống xử lý đúng — truncate/báo lỗi nếu có max length, hoặc lưu thành công",Medium
+ALC_FORM_TC_017,M2.2: Trường Địa chỉ,Medium,Verify trường Địa chỉ — leading/trailing spaces,"Popup đã hiển thị, checkbox đã check, trường Tên có giá trị","1. Xóa giá trị autofill trường ""Địa chỉ cư trú""
+2. Nhập: ""  456 Lê Lợi, Quận 1  "" (space đầu cuối)
+3. Nhấn nút ""Xác nhận""","Trường Địa chỉ: ""  456 Lê Lợi, Quận 1  ""","1-2. Giá trị được nhập
+3. Hệ thống trim spaces. customer_note lưu: ""456 Lê Lợi, Quận 1""",Low
+ALC_FORM_TC_018,M2.3: Checkbox tuổi,High,Verify checkbox mặc định UNCHECK khi mở form,"User nhấn ""Đặt hàng"" với giỏ hàng có SP rượu, popup vừa hiển thị","1. Quan sát trạng thái checkbox ""Tôi đã đủ 18 tuổi"" ngay khi popup mở",N/A,1. Checkbox ở trạng thái unchecked (chưa tick),Critical
+ALC_FORM_TC_019,M2.3: Checkbox tuổi,High,Verify checkbox có thể check (tick),"Popup đã hiển thị, checkbox đang uncheck","1. Click vào checkbox ""Tôi đã đủ 18 tuổi""
+2. Quan sát trạng thái checkbox",N/A,"1. Checkbox phản hồi click
+2. Checkbox chuyển sang trạng thái checked (có dấu tick)",Critical
+ALC_FORM_TC_020,M2.3: Checkbox tuổi,High,Verify checkbox có thể uncheck sau khi đã check,"Popup đã hiển thị, checkbox đang checked","1. Click vào checkbox ""Tôi đã đủ 18 tuổi"" lần nữa
+2. Quan sát trạng thái checkbox",N/A,"1. Checkbox phản hồi click
+2. Checkbox chuyển về trạng thái unchecked",High
+ALC_FORM_TC_021,M2.3: Checkbox tuổi,High,Verify toggle checkbox nhiều lần (check → uncheck → check),"Popup đã hiển thị, checkbox đang uncheck","1. Click checkbox (check)
+2. Click checkbox (uncheck)
+3. Click checkbox (check)
+4. Quan sát trạng thái cuối",N/A,"1. Checkbox checked
+2. Checkbox unchecked
+3. Checkbox checked
+4. Trạng thái cuối: checked, Button ""Xác nhận"" enabled",Medium
+ALC_FORM_TC_022,M2.4: Button Xác nhận,High,"Verify button ""Xác nhận"" DISABLED khi checkbox chưa check","Popup vừa hiển thị, checkbox ở trạng thái uncheck","1. Quan sát trạng thái button ""Xác nhận""
+2. Thử click vào button ""Xác nhận""",N/A,"1. Button ở trạng thái disabled (màu mờ/xám)
+2. Click không có hiệu lực, form không đóng",Critical
+ALC_FORM_TC_023,M2.4: Button Xác nhận,High,"Verify button ""Xác nhận"" ENABLED khi checkbox đã check",Popup đã hiển thị,"1. Check checkbox ""Tôi đã đủ 18 tuổi""
+2. Quan sát trạng thái button ""Xác nhận""",N/A,"1. Checkbox được tick
+2. Button chuyển sang trạng thái enabled (có thể click, màu nổi bật)",Critical
+ALC_FORM_TC_024,M2.4: Button Xác nhận,High,Verify button trở lại DISABLED khi uncheck checkbox,"Popup đã hiển thị, checkbox đã check, button đang enabled","1. Uncheck checkbox ""Tôi đã đủ 18 tuổi""
+2. Quan sát trạng thái button ""Xác nhận""",N/A,"1. Checkbox chuyển về unchecked
+2. Button trở lại trạng thái disabled",Critical
+ALC_FORM_TC_025,M2.5: Hint text,Low,Verify hint text hiển thị đúng nội dung,Popup đã hiển thị,1. Quan sát nội dung hint/chú thích trên form,N/A,"1. Hiển thị đúng: ""Yêu cầu theo Nghị định 105/2017/NĐ-CP về kinh doanh rượu.""",Low
+ALC_FORM_TC_026,M2.6: Nút đóng form,Medium,[App] Verify nút X hiển thị và đóng được form,Popup đã hiển thị trên App,"1. Quan sát popup, tìm nút X
+2. Nhấn nút X",Platform: App (iOS/Android),"1. Nút X hiển thị ở góc trên phải popup
+2. Popup đóng lại, user quay về trang ""Xác nhận thanh toán""",High
+ALC_FORM_TC_027,M2.6: Nút đóng form,Medium,[Mweb/Web] Verify nút X hiển thị và đóng được form,Popup đã hiển thị trên Mweb hoặc Web desktop,"1. Quan sát popup, tìm nút X
+2. Nhấn nút X",Platform: Mweb / Web desktop,"1. Nút X hiển thị trên popup
+2. Popup đóng lại, user quay về trang ""Xác nhận thanh toán""",High
+ALC_FORM_TC_028,M2.6: Nút đóng form,Medium,"[Mweb/Web] Verify nút ""Huỷ Bỏ"" hiển thị và đóng được form",Popup đã hiển thị trên Mweb hoặc Web desktop,"1. Quan sát popup, tìm nút ""Huỷ Bỏ""
+2. Nhấn nút ""Huỷ Bỏ""",Platform: Mweb / Web desktop,"1. Nút ""Huỷ Bỏ"" hiển thị trên popup (App không có nút này)
+2. Popup đóng lại, user quay về trang ""Xác nhận thanh toán""",High
+ALC_FORM_TC_029,M2.6: Nút đóng form,Medium,"[App] Verify KHÔNG có nút ""Huỷ Bỏ"" trên App",Popup đã hiển thị trên App,"1. Quan sát toàn bộ UI popup
+2. Kiểm tra có nút ""Huỷ Bỏ"" hay không",Platform: App (iOS/Android),"1-2. Popup trên App KHÔNG hiển thị nút ""Huỷ Bỏ"", chỉ có nút X",Medium
+ALC_FLOW_TC_001,M3: Luồng xác nhận OK,High,Verify xác nhận thành công — dữ liệu autofill gốc,"Popup hiển thị, Tên autofill ""Nguyễn Văn An"", Địa chỉ autofill ""123 Nguyễn Huệ, Q1, TP.HCM"", checkbox đã check","1. Giữ nguyên dữ liệu autofill
+2. Nhấn nút ""Xác nhận""
+3. Quan sát kết quả","Tên: Nguyễn Văn An ǀ Địa chỉ: 123 Nguyễn Huệ, Q1, TP.HCM ǀ Checkbox: checked","1. Dữ liệu autofill đúng
+2. Button phản hồi click
+3. Popup đóng → tiếp tục luồng đặt hàng",Critical
+ALC_FLOW_TC_002,M3: Luồng xác nhận OK,High,Verify xác nhận thành công — sau khi chỉnh sửa Tên,"Popup hiển thị, Tên autofill ""Nguyễn Văn An"", checkbox đã check","1. Chỉnh sửa Tên: ""Trần Thị Bình""
+2. Giữ nguyên Địa chỉ autofill
+3. Nhấn nút ""Xác nhận""",Tên chỉnh sửa: Trần Thị Bình ǀ Địa chỉ: autofill gốc,"1. Trường Tên: ""Trần Thị Bình""
+2. Địa chỉ giữ nguyên
+3. Popup đóng → tiếp tục đặt hàng",High
+ALC_FLOW_TC_003,M3: Luồng xác nhận OK,High,Verify xác nhận thành công — sau khi chỉnh sửa Địa chỉ,"Popup hiển thị, Địa chỉ autofill ""123 Nguyễn Huệ, Q1, TP.HCM"", checkbox đã check","1. Giữ nguyên Tên autofill
+2. Chỉnh sửa Địa chỉ: ""789 Hai Bà Trưng, Q3, TP.HCM""
+3. Nhấn nút ""Xác nhận""","Tên: autofill gốc ǀ Địa chỉ chỉnh sửa: 789 Hai Bà Trưng, Q3, TP.HCM","1. Tên giữ nguyên
+2. Địa chỉ: ""789 Hai Bà Trưng, Q3, TP.HCM""
+3. Popup đóng → tiếp tục đặt hàng",High
+ALC_FLOW_TC_004,M3: Luồng xác nhận OK,High,Verify xác nhận thành công — chỉnh sửa cả Tên và Địa chỉ,"Popup hiển thị, checkbox đã check","1. Chỉnh sửa Tên: ""Lê Hoàng Nam""
+2. Chỉnh sửa Địa chỉ: ""10 Phạm Ngọc Thạch, Q3, TP.HCM""
+3. Nhấn nút ""Xác nhận""","Tên: Lê Hoàng Nam ǀ Địa chỉ: 10 Phạm Ngọc Thạch, Q3, TP.HCM","1-2. Cả 2 trường hiển thị giá trị mới
+3. Popup đóng → tiếp tục đặt hàng",High
+ALC_FLOW_TC_005,M4: Luồng đóng/huỷ,Medium,Verify đóng form bằng nút X — không tiếp tục thanh toán,Popup đã hiển thị,"1. Nhấn nút X để đóng popup
+2. Quan sát trang sau khi popup đóng",N/A,"1. Popup đóng lại
+2. User quay về trang ""Xác nhận thanh toán"", KHÔNG tiếp tục tạo đơn hàng",High
+ALC_FLOW_TC_006,M4: Luồng đóng/huỷ,Medium,"[Mweb/Web] Verify đóng form bằng nút ""Huỷ Bỏ"" — không tiếp tục thanh toán",Popup đã hiển thị trên Mweb/Web,"1. Nhấn nút ""Huỷ Bỏ""
+2. Quan sát trang sau khi popup đóng",Platform: Mweb / Web desktop,"1. Popup đóng lại
+2. User quay về trang ""Xác nhận thanh toán"", KHÔNG tiếp tục tạo đơn hàng",High
+ALC_FLOW_TC_007,M4: Luồng đóng/huỷ,Medium,Verify đóng form sau khi đã check checkbox nhưng chưa nhấn Xác nhận,"Popup đã hiển thị, checkbox đã check, button enabled","1. Check checkbox ""Tôi đã đủ 18 tuổi""
+2. KHÔNG nhấn ""Xác nhận"", nhấn nút X để đóng
+3. Quan sát kết quả",N/A,"1. Checkbox checked, button enabled
+2. Popup đóng lại
+3. KHÔNG tiếp tục đặt hàng (user chưa nhấn Xác nhận)",High
+ALC_DATA_TC_001,M5: Dữ liệu OMS,High,Verify customer_note ghi đúng format — dữ liệu autofill gốc,"User xác nhận thành công với autofill, đơn hàng được tạo","1. Trên popup, giữ nguyên Tên ""Nguyễn Văn An"" và Địa chỉ ""123 Nguyễn Huệ, Q1, TP.HCM""
+2. Check checkbox, nhấn ""Xác nhận""
+3. Đơn hàng tạo thành công
+4. Vào OMS, kiểm tra mục ""Ghi chú""","Tên: Nguyễn Văn An ǀ Địa chỉ: 123 Nguyễn Huệ, Q1, TP.HCM","1-3. Xác nhận và đặt hàng thành công
+4. Ghi chú OMS hiển thị: ""Tên người mua: Nguyễn Văn An\nĐịa chỉ cư trú: 123 Nguyễn Huệ, Q1, TP.HCM\nXác nhận đủ 18 tuổi: đã xác nhận""",Critical
+ALC_DATA_TC_002,M5: Dữ liệu OMS,High,Verify customer_note ghi đúng format — Tên đã chỉnh sửa,User chỉnh sửa Tên rồi xác nhận thành công,"1. Chỉnh sửa Tên: ""Trần Thị Bình""
+2. Giữ nguyên Địa chỉ autofill
+3. Check checkbox, nhấn ""Xác nhận"", đặt hàng thành công
+4. Vào OMS, kiểm tra ""Ghi chú""","Tên chỉnh sửa: Trần Thị Bình ǀ Địa chỉ autofill: 123 Nguyễn Huệ, Q1, TP.HCM","1-3. Xác nhận thành công
+4. Ghi chú OMS: ""Tên người mua: Trần Thị Bình\nĐịa chỉ cư trú: 123 Nguyễn Huệ, Q1, TP.HCM\nXác nhận đủ 18 tuổi: đã xác nhận""",Critical
+ALC_DATA_TC_003,M5: Dữ liệu OMS,High,Verify customer_note ghi đúng format — Địa chỉ đã chỉnh sửa,User chỉnh sửa Địa chỉ rồi xác nhận thành công,"1. Giữ nguyên Tên autofill: ""Nguyễn Văn An""
+2. Chỉnh sửa Địa chỉ: ""789 Hai Bà Trưng, Q3, TP.HCM""
+3. Check checkbox, nhấn ""Xác nhận"", đặt hàng thành công
+4. Vào OMS, kiểm tra ""Ghi chú""","Tên autofill: Nguyễn Văn An ǀ Địa chỉ chỉnh sửa: 789 Hai Bà Trưng, Q3, TP.HCM","1-3. Xác nhận thành công
+4. Ghi chú OMS: ""Tên người mua: Nguyễn Văn An\nĐịa chỉ cư trú: 789 Hai Bà Trưng, Q3, TP.HCM\nXác nhận đủ 18 tuổi: đã xác nhận""",Critical
+ALC_DATA_TC_004,M5: Dữ liệu OMS,High,Verify customer_note hiển thị đúng tại mục Ghi chú trên OMS,Đơn hàng đã tạo thành công sau khi xác nhận rượu,"1. Đăng nhập OMS
+2. Tìm đơn hàng vừa tạo
+3. Mở chi tiết đơn hàng
+4. Tìm mục ""Ghi chú"" (Customer Note)",Đơn hàng vừa tạo có xác nhận rượu,"1-3. Đơn hàng tìm thấy, mở chi tiết thành công
+4. Mục ""Ghi chú"" hiển thị thông tin xác nhận rượu đúng format, dữ liệu khớp với popup",High
+ALC_TRACK_TC_001,M6: Tracking,Medium,Verify event view_terms gửi khi popup hiển thị,"Giỏ hàng có SP rượu, user ở trang ""Xác nhận thanh toán"", Amplitude debug đang bật","1. Nhấn nút ""Đặt hàng""
+2. Popup hiển thị
+3. Kiểm tra log Amplitude",Event: view_terms ǀ terms_name: alcohol_purchase_residency,"1-2. Popup hiển thị thành công
+3. Event view_terms gửi với: terms_name = alcohol_purchase_residency",High
+ALC_TRACK_TC_002,M6: Tracking,Medium,Verify event submit_terms (action=agree) gửi khi xác nhận thành công,"Popup đã hiển thị, checkbox đã check, Amplitude debug đang bật","1. Nhấn nút ""Xác nhận""
+2. Kiểm tra log Amplitude",Event: submit_terms ǀ terms_name: alcohol_purchase_residency ǀ action: agree,"1. Popup đóng, tiếp tục đặt hàng
+2. Event submit_terms gửi với: terms_name = alcohol_purchase_residency, action = agree",High
+ALC_TRACK_TC_003,M6: Tracking,Medium,Verify event submit_terms (action=rejected) khi đóng bằng nút X,"Popup đã hiển thị, Amplitude debug đang bật","1. Nhấn nút X để đóng popup
+2. Kiểm tra log Amplitude",Event: submit_terms ǀ terms_name: alcohol_purchase_residency ǀ action: rejected,"1. Popup đóng lại
+2. Event submit_terms gửi với: terms_name = alcohol_purchase_residency, action = rejected",High
+ALC_TRACK_TC_004,M6: Tracking,Medium,"[Mweb/Web] Verify event submit_terms (action=rejected) khi đóng bằng nút ""Huỷ Bỏ""","Popup đã hiển thị trên Mweb/Web, Amplitude debug đang bật","1. Nhấn nút ""Huỷ Bỏ""
+2. Kiểm tra log Amplitude",Event: submit_terms ǀ action: rejected ǀ Platform: Mweb/Web,"1. Popup đóng lại
+2. Event submit_terms gửi với: terms_name = alcohol_purchase_residency, action = rejected",High
+ALC_TRACK_TC_005,M6: Tracking,Medium,Verify KHÔNG gửi event view_terms khi giỏ hàng không có SP rượu,"Giỏ hàng chỉ có SP thường, Amplitude debug đang bật","1. Tại trang ""Xác nhận thanh toán"", nhấn ""Đặt hàng""
+2. Kiểm tra log Amplitude",Giỏ hàng: 1x Nước suối Aquafina 500ml,"1. Đặt hàng bình thường, popup KHÔNG hiển thị
+2. Event view_terms KHÔNG được gửi",Medium

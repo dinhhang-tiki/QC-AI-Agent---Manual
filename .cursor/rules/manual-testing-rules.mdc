@@ -1,0 +1,23 @@
+---
+description: Quy tắc bắt buộc khi sinh Manual Test Case
+alwaysApply: true
+---
+
+# Manual Testing Rules
+
+Luật áp dụng **bắt buộc** cho mọi tác vụ sinh Test Case thủ công.
+
+## 1. Test Data
+
+- CẤM: "Nhập tài khoản đúng", "Nhập sai mật khẩu", "Mã giảm giá hết hạn"
+- BẮT BUỘC: `user01@test.com`, `Abc@12345`, `EXPIRED_COUPON_2023`
+
+## 2. Test Steps
+
+- Hành động nguyên tử (atomic)
+- Ví dụ: "1. Nhập email: abc@test.com → 2. Nhập password: 123 → 3. Click Đăng nhập"
+
+## 3. Format đầu ra
+
+- Xuất bảng với các cột: `TC ID`, `Module`, `Test Scenario`, `Test Steps`, `Expected Result`
+- Ưu tiên bảng Markdown; Excel khi user yêu cầu
